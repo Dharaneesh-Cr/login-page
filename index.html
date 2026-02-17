@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KPRIET</title>
+        <link rel="icon" href="logo.png" >
+        <link rel="stylesheet" href="style.css">
+    </head>
+        <body>
+            <div>
+            <img src="image1.jpg" height="300px" width="300px">
+            <h1>WELCOME</h1>
+            <p>Please login to access internet</p><br></div>
+            <form onsubmit="check(event)">
+                
+                <label for="userroll">Roll.No:</label> 
+                <input type="text" id="userroll" placeholder="Enter roll number" required ><br><br>
+                
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter password" required><br><br>
+
+                <input type="checkbox" id="agree">
+                <button for="agree" onclick="openlink()">Terms and conditions</button> <br><br>
+                <div class="modal" id="mymodal">
+                    <div class="modal-content">
+                        <img src="logo.png" height="200px" width="200px">
+                        <h2>Terms and conditions</h2>
+                        <p>You as an HotSpot user agree to not use this service for any kind of illegal or unauthorized purpose or activity. You agree that this system will not be liable for any demand, claims, direct or indirect actions or any other legal process as a result of illegal or unauthorized action or any other act from breaching these Terms and Conditions by the user. You understand and agree that this HotSpot system cannot and does not guarantee that the service is always available, uninterrupted, secure, error free and any errors will be corrected.Your use of the Network is solely at your own risk.</p>
+                        <button onclick="closelink()">close</button>
+                    </div>
+                </div>
+
+                <button id="submit" >LOGIN</button>
+                <p id="msg"></p>
+              </form>
+              <script>
+                function check(event){
+                    event.preventDefault();
+                    
+                    let userroll=document.getElementById("userroll").value;
+                    let password=document.getElementById("password").value;
+                    let check=document.getElementById("agree")
+                    let message=document.getElementById("msg")
+                     
+                    if(userroll=="admin" && password==123456 && check.checked){
+                        message.textContent="LOGGIN SUCCESSFULLY"
+                        
+                    }else{
+                        message.textContent="LOGGIN FAILED"
+                    }
+                }
+                function openlink(){
+                    document.getElementById("mymodal").style.display="block";
+                }
+                function closelink(){
+                    document.getElementById("mymodal").style.display="none";
+                }
+                
+              </script>
+        </body>
+</html>
