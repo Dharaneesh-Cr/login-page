@@ -2,10 +2,14 @@ body{
     color: aliceblue;
     text-align: center;
     padding: 20px 20px;
-    background:red,black;
     text-transform: capitalize;
     letter-spacing: 3px;
     background: linear-gradient(to right,white,black);
+}
+.container{
+    width: 90%;
+    max-width: 400px;
+    margin:auto;
 }
 input{
     padding: 10px;
@@ -13,6 +17,8 @@ input{
     border-color: black;
     font-size: medium;
     font-style:italic;
+    width: 100%;
+    margin: 10px 0;
 }
 input:hover{
     background-color: black;
