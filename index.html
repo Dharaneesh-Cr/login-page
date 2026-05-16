@@ -1,63 +1,100 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>KPRIET</title>
-        <link rel="icon" href="logo.png" >
-        <link rel="stylesheet" href="style.css">
-    </head>
-        <body>
-            <img src="image1.jpg" height="300px" width="300px">
-            <h1>WELCOME</h1>
-            <p>Please login to access internet</p><br>
-            <form onsubmit="check(event)">
-                
-                <label for="userroll">Roll.No:</label> 
-                <input type="text" id="userroll" placeholder="Enter roll number" required ><br><br>
-                
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPRIET Login</title>
+    <link rel="icon" href="image1.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        .custom-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1050; 
+            left: 0; top: 0; width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .custom-modal-content {
+            background-color: white; padding: 20px; 
+            border-radius: 8px; max-width: 500px; width: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Enter password" required><br><br>
-
-                <input type="checkbox" id="agree">
-                <button for="agree" onclick="openlink()">Terms and conditions</button> <br><br>
-                <div class="modal" id="mymodal">
-                    <div class="modal-content">
-                        <img src="logo.png" height="200px" width="200px">
-                        <h2>Terms and conditions</h2>
-                        <p>You as an HotSpot user agree to not use this service for any kind of illegal or unauthorized purpose or activity. You agree that this system will not be liable for any demand, claims, direct or indirect actions or any other legal process as a result of illegal or unauthorized action or any other act from breaching these Terms and Conditions by the user. You understand and agree that this HotSpot system cannot and does not guarantee that the service is always available, uninterrupted, secure, error free and any errors will be corrected.Your use of the Network is solely at your own risk.</p>
-                        <button onclick="closelink()">close</button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 bg-white p-5 rounded shadow-sm text-center">
+                
+                <img src="logo.png" alt="Logo" class="img-fluid mb-4" style="max-height: 150px;">
+                <h1 class="h3 mb-3 fw-normal">WELCOME</h1>
+                <p class="text-muted mb-4">Please login to access internet</p>
+                
+                <form onsubmit="check(event)">
+                    <div class="form-floating mb-3 text-start">
+                        <input type="text" class="form-control" id="userroll" placeholder="Enter roll number" required>
+                        <label for="userroll">Roll Number</label>
                     </div>
-                </div>
-        
-
-                <button id="submit" >LOGIN</button>
-                <p id="msg"></p>
-              </form>
-              <script>
-                function check(event){
-                    event.preventDefault();
                     
-                    let userroll=document.getElementById("userroll").value;
-                    let password=document.getElementById("password").value;
-                    let check=document.getElementById("agree")
-                    let message=document.getElementById("msg")
-                     
-                    if(userroll=="admin" && password==123456 && check.checked){
-                        message.textContent="LOGGIN SUCCESSFULLY"
-                        
-                    }else{
-                        message.textContent="LOGGIN FAILED"
-                    }
-                }
-                function openlink(){
-                    document.getElementById("mymodal").style.display="block";
-                }
-                function closelink(){
-                    document.getElementById("mymodal").style.display="none";
-                }
+                    <div class="form-floating mb-3 text-start">
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                        <label for="password">Password</label>
+                    </div>
+
+                    <div class="form-check text-start mb-4">
+                        <input type="checkbox" class="form-check-input" id="agree" required>
+                        <label class="form-check-label" encoding="UTF-8">
+                            I agree to the 
+                            <button type="button" class="btn btn-link p-0 vertical-align-baseline" onclick="openModal()">Terms and conditions</button>
+                        </label>
+                    </div>
+                    
+                    <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">LOGIN</button>
+                    
+                    <p id="msg" class="fw-bold"></p>
+                </form>
                 
-              </script>
-        </body>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-modal" id="mymodal">
+        <div class="custom-modal-content">
+            <img src="logo.png" alt="Institutional Logo" class="img-fluid mb-3 rounded-circle" style="max-height: 100px;">
+            <h3>Terms and Conditions</h3>
+            <p class="text-muted small text-start">
+                You as a HotSpot user agree to not use this service for any kind of illegal or unauthorized purpose or activity. You agree that this system will not be liable for any demand, claims, direct or indirect actions or any other legal process as a result of illegal or unauthorized action or any other act from breaching these Terms and Conditions by the user. You understand and agree that this HotSpot system cannot and does not guarantee that the service is always available, uninterrupted, secure, error-free, and any errors will be corrected. Your use of the Network is solely at your own risk.
+            </p>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function check(event){
+            event.preventDefault();
+            
+            const userroll = document.getElementById("userroll").value.trim();
+            const password = document.getElementById("password").value;
+            const check = document.getElementById("agree");
+            const message = document.getElementById("msg");
+             
+            if(userroll === "admin" && password === "123456" && check.checked){
+                message.className = "text-success";
+                message.textContent = "LOGGED IN SUCCESSFULLY";
+            } else {
+                message.className = "text-danger";
+                message.textContent = "LOGIN FAILED";
+            }
+        }
+
+        function openModal(){
+            document.getElementById("mymodal").style.display = "flex";
+        }
+        function closeModal(){
+            document.getElementById("mymodal").style.display = "none";
+        }
+    </script>
+</body>
 </html>
-
-
